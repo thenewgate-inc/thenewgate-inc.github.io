@@ -101,9 +101,96 @@
       color: #555;
       font-size: 0.8rem;
     }
+    /* Login overlay */
+    .login-overlay {
+      position: fixed;
+      inset: 0;
+      background: #0f1117;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .login-overlay.hidden { display: none; }
+
+    .login-box {
+      background: #181b27;
+      border: 1px solid #252839;
+      border-radius: 16px;
+      padding: 2.5rem;
+      width: 360px;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      color: #fff;
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .login-box p {
+      color: #888;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1px solid #252839;
+      border-radius: 8px;
+      background: #0f1117;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .login-box input:focus {
+      border-color: #4f6ef7;
+    }
+
+    .login-box button {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 8px;
+      background: #4f6ef7;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .login-box button:hover { background: #3b5ae0; }
+
+    .login-error {
+      color: #f87171;
+      font-size: 0.82rem;
+      margin-top: 0.7rem;
+      min-height: 1.2em;
+    }
+
+    .main-content { display: none; }
+    .main-content.visible { display: block; }
   </style>
 </head>
 <body>
+
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <h2>TNG Projects Portal</h2>
+    <p>アクセスにはパスワードが必要です</p>
+    <input type="password" id="passwordInput" placeholder="パスワードを入力" autofocus>
+    <button id="loginBtn">ログイン</button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<div class="main-content" id="mainContent">
 
 <header>
   <h1>TNG Projects Portal</h1>
@@ -166,6 +253,43 @@
 <footer>
   TheNewGate Inc. — Last updated: 2026-04-08
 </footer>
+
+</div><!-- /main-content -->
+
+<script>
+(function() {
+  var hash = '05c824013f58fe903fb67953077099ff6a29061fe0602c04616d59bcd6262a4b';
+
+  async function sha256(str) {
+    var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+  }
+
+  if (sessionStorage.getItem('tng_auth') === '1') {
+    document.getElementById('loginOverlay').classList.add('hidden');
+    document.getElementById('mainContent').classList.add('visible');
+  }
+
+  async function tryLogin() {
+    var pw = document.getElementById('passwordInput').value;
+    var h = await sha256(pw);
+    if (h === hash) {
+      sessionStorage.setItem('tng_auth', '1');
+      document.getElementById('loginOverlay').classList.add('hidden');
+      document.getElementById('mainContent').classList.add('visible');
+    } else {
+      document.getElementById('loginError').textContent = 'パスワードが正しくありません';
+      document.getElementById('passwordInput').value = '';
+      document.getElementById('passwordInput').focus();
+    }
+  }
+
+  document.getElementById('loginBtn').addEventListener('click', tryLogin);
+  document.getElementById('passwordInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') tryLogin();
+  });
+})();
+</script>
 
 </body>
 </html>
