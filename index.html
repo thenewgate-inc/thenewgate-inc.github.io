@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TNG Projects Portal</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
+      background: #0f1117;
+      color: #e0e0e0;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 3rem 2rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid #1e2130;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      color: #888;
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+      max-width: 1100px;
+      margin: 2.5rem auto;
+      padding: 0 2rem;
+    }
+
+    .card {
+      background: #181b27;
+      border: 1px solid #252839;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card:hover {
+      border-color: #4f6ef7;
+      transform: translateY(-2px);
+    }
+
+    .card .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      width: fit-content;
+    }
+
+    .tag.product   { background: #1a3a2a; color: #4ade80; }
+    .tag.docs      { background: #1a2a3a; color: #60a5fa; }
+    .tag.internal  { background: #2a1a3a; color: #c084fc; }
+    .tag.poc       { background: #3a2a1a; color: #fbbf24; }
+
+    .card h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .card .desc {
+      font-size: 0.88rem;
+      color: #999;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .card .url {
+      font-size: 0.78rem;
+      color: #4f6ef7;
+      word-break: break-all;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #555;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>TNG Projects Portal</h1>
+  <p>GitHub Pages リンク集</p>
+</header>
+
+<div class="grid">
+
+  <a class="card" href="https://thenewgate-inc.github.io/KANAME/" target="_blank" rel="noopener">
+    <span class="tag product">Product</span>
+    <h2>KANAME</h2>
+    <p class="desc">AIエージェントチームによる組織的意思決定支援プラットフォーム。構造化されたレポートを生成し、課題を分析する。</p>
+    <span class="url">thenewgate-inc.github.io/KANAME/</span>
+  </a>
+
+  <a class="card" href="https://thenewgate-inc.github.io/senka/" target="_blank" rel="noopener">
+    <span class="tag product">Product</span>
+    <h2>閃火 (Senka)</h2>
+    <p class="desc">AIが仕事を受け取って、完了する。タスク自動実行プラットフォーム。</p>
+    <span class="url">thenewgate-inc.github.io/senka/</span>
+  </a>
+
+  <a class="card" href="https://thenewgate-inc.github.io/office-x/" target="_blank" rel="noopener">
+    <span class="tag docs">Docs</span>
+    <h2>Office X</h2>
+    <p class="desc">Mockup & Documentation Portal。Office X プロジェクトの設計ドキュメント。</p>
+    <span class="url">thenewgate-inc.github.io/office-x/</span>
+  </a>
+
+  <a class="card" href="https://thenewgate-inc.github.io/office-x-poc/" target="_blank" rel="noopener">
+    <span class="tag poc">PoC</span>
+    <h2>Office X PoC</h2>
+    <p class="desc">Office X のProof of Concept。技術検証用ドキュメント。</p>
+    <span class="url">thenewgate-inc.github.io/office-x-poc/</span>
+  </a>
+
+  <a class="card" href="https://thenewgate-inc.github.io/reply-flow/" target="_blank" rel="noopener">
+    <span class="tag product">Product</span>
+    <h2>ReplyFlow</h2>
+    <p class="desc">自動コミュニケーションツール。ドキュメンテーションポータル。</p>
+    <span class="url">thenewgate-inc.github.io/reply-flow/</span>
+  </a>
+
+  <a class="card" href="https://thenewgate-inc.github.io/cytech-urushi/" target="_blank" rel="noopener">
+    <span class="tag docs">Docs</span>
+    <h2>CyTech Urushi OS</h2>
+    <p class="desc">CyTech Urushi OS のテクニカルドキュメンテーション。</p>
+    <span class="url">thenewgate-inc.github.io/cytech-urushi/</span>
+  </a>
+
+  <a class="card" href="https://thenewgate-inc.github.io/mmj/" target="_blank" rel="noopener">
+    <span class="tag docs">Docs</span>
+    <h2>MMJ 配乳システム</h2>
+    <p class="desc">配乳システムの要件定義ポータル。</p>
+    <span class="url">thenewgate-inc.github.io/mmj/</span>
+  </a>
+
+</div>
+
+<footer>
+  TheNewGate Inc. — Last updated: 2026-04-08
+</footer>
+
+</body>
+</html>
